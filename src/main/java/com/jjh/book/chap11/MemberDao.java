@@ -1,4 +1,4 @@
-package org.jjh.book.chap11;
+package com.jjh.book.chap11;
 
 import java.util.List;
 
@@ -34,5 +34,7 @@ public interface MemberDao {
 	 * 회원 수
 	 */
 	int countAll();
+	
+	Member selectByLogin(String email, String password);
 }
 

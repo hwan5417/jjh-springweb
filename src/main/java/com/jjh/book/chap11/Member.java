@@ -1,4 +1,4 @@
-package org.jjh.book.chap11;
+package com.jjh.book.chap11;
 
 public class Member {
 	String memberId; // 아이디
