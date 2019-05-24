@@ -7,7 +7,7 @@
 <title>메인</title>
 </head>
 <body>
-	<p>환영합니다.</p>
+	<h2>Welcome to Springweb!</h2>
 	<!-- 로그인 여부에 따라 분기 -->
 	<c:choose>
 		<c:when test="${!empty sessionScope.MEMBER }">
@@ -28,11 +28,12 @@
 			</p>
 		</c:otherwise>
 	</c:choose>
+	<p>
 		<a href="./app/members">[회원 목록]</a>
 	</p>
 	<p>
-		<a href="./app/main1">[게시판]</a>
-</p>
+		<a href="./app/article/list">[게시판]</a>
+	</p>
 </body>
 </head>
 </html>

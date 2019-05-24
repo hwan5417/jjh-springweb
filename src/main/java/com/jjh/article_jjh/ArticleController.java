@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.jjh.book.chap11.Member;
 
@@ -30,35 +31,28 @@ public class ArticleController {
 	}
 	 
 	//글쓰기 단계
-	@GetMapping("/article/step1")
+	@GetMapping("/article/addForm")
 	public String Step1(HttpSession session) {
-		Object memberObj = session.getAttribute("MEMBER");
-		if(memberObj==null)
-			return "redirect:/app/loginForm";
-		return "/article/step1";
+		return "/article/addFormS";
 	}
 
-	@PostMapping("/article/step2")
-	public String Step2(Article article, HttpSession session) {
-		Object memberObj = session.getAttribute("MEMBER");
-		if (memberObj == null)
-			return "redirect:/app/loginForm";
-
-		Member member = (Member) memberObj;
+	@PostMapping("/article/add")
+	public String Step2(Article article, 
+			@SessionAttribute("MEMBER") Member member) {
 		article.setUserId(member.getMemberId());
 		article.setName(member.getName());
 		articleDao.write(article);
-		return "redirect:/app/articles";
+		return "redirect:/app/article/list";
 	}
 	
-	@GetMapping("/article/step3")
+	@GetMapping("/article/view")
 	public void Step3(
 			@RequestParam("articleId") String articleId, Model model) {
 		Article article = articleDao.search(articleId);
 		model.addAttribute("article",article);
 	}
 	
-	@GetMapping("/articles")
+	@GetMapping("/article/list")
 	public String articles(
 			@RequestParam(value = "page", defaultValue = "1") int page,
 			Model model) {
@@ -70,7 +64,22 @@ public class ArticleController {
 		int totalCount = articleDao.countAll();
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("articles", articleList);
-		return "articles";
+		return "/article/list";
 	}
 	
+	@PostMapping("/article/update")
+	public String update(Article article, 
+			@SessionAttribute("MEMBER") Member member) {
+		article.setUserId(member.getMemberId());
+		article.setName(member.getName());
+		articleDao.write(article);
+		return "redirect:/app/article/update";
+	}
+	
+	@GetMapping("/article/delete")
+	public void delete(
+			@RequestParam("articleId") String articleId, Model model) {
+		Article article = articleDao.search(articleId);
+		model.addAttribute("article",article);
+	}
 }

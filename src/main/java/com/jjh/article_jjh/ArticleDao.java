@@ -11,5 +11,10 @@ public interface ArticleDao {
 	Article search(String articleId);
 	//게시글 갯수 확인
 	int countAll();
+	//게시글 수정
+	int updateArticle(Article article);
+	//게시글 삭제
+	int deleteArticle(String articleId);
+	
 }
 
