@@ -12,9 +12,11 @@ table {
 	border-bottom: 1px solid gray;
 	width: 100%;
 }
+
 th, td {
 	padding: 5px 0;
 }
+
 th {
 	border-bottom: 1px solid gray;
 }
@@ -42,7 +44,7 @@ th {
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="article" items="${articles}">
+			<c:forEach var="article" items="${articleList}">
 				<tr>
 					<td><a href="./app/article/view?articleId=${article.articleId }">${article.articleId }</a></td>
 					<td><a href="./app/article/view?articleId=${article.articleId }">${article.title }</a></td>

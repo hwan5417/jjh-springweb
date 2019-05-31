@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html>
@@ -12,7 +11,7 @@
 	<p>
 		<a href="./app/article/list">글 목록</a>
 	</p>
-	<form action="./app/article/addForm" method="post">
+	<form action="./app/article/add" method="post">
 		<p>제목 :</p>
 		<p>
 			<input type="text" name="title" maxlength="100" style="width: 100%;" required>
