@@ -8,7 +8,7 @@ public class Letter {
 	String senderName; // 보내는 사람 이름
 	String receiverId; // 받는 사람 ID
 	String receiverName; // 받는 사람 이름
-	String cdate; // 수정한 시간
+	String cdate; // 보낸 시간
 	
 	public String getLetterId() {
 		return letterId;
@@ -58,6 +58,13 @@ public class Letter {
 	public void setCdate(String cdate) {
 		this.cdate = cdate;
 	}
+	
+	public String getContentHtml() {
+		if (content != null)
+			return content.replace("\n", "<br/>");
+		return null;
+	}
+	
 	@Override
 	public String toString() {
 		return "Letter [letterId=" + letterId + ", title=" + title + ", content=" + content + ", senderId=" + senderId
